@@ -1,0 +1,19 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "JwtSettings": {
+    "SecretKey": "",
+    "Issuer": "https://example.ru/",
+    "Audience": "https://example.ru/",
+    "AccessTokenExpirationMinutes": 300,
+    "RefreshTokenExpirationMinutes": 8640
+  },
+  "DatabaseSettings": {
+    "DatabaseConnection": "Host=example.ru;Port=5555;Database=example;Username=example;Password=12345"
+  },
+  "AllowedHosts": "*"
+}
