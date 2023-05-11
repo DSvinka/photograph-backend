@@ -308,7 +308,7 @@ public class AlbumsController: ControllerBase
     /// <response code="403">У вас недостаточно прав</response>
     /// <response code="404">Запись не найдена</response>
     // DELETE: api/albums/{albumId}/files/{fileId}
-    [HttpDelete("{id:long}/files/{fileId:long}"), Authorized(true)]
+    [HttpDelete("{albumId:long}/files/{fileId:long}"), Authorized(true)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

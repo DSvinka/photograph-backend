@@ -34,12 +34,12 @@ public class FilesController: ControllerBase
     /// <response code="200">Операция успешно выполнена</response>
     /// <response code="404">Запись не найдена</response>    
     // POST: api/files/{fileName}.{fileType}
-    [HttpGet("{fileName}.{fileType}"), AllowAnonymous]
+    [HttpGet("{fileId:long}.{fileType}"), AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetFile(string fileName, string fileType)
+    public async Task<IActionResult> GetFile(long fileId, string fileType)
     {
-        var fileModel = await _filesRepository.GetByNameAndType(fileName, fileType);
+        var fileModel = await _filesRepository.GetByIdAsync(fileId);
         if (fileModel == null)
         {
             return NotFound();

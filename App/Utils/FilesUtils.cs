@@ -57,6 +57,6 @@ public static class FilesUtils
 
     public static string GetFileUrl(this FileModel file, SettingsModel settings)
     {
-        return $"{settings.BackendUrl}/files/{file.Id}.{file.FileType.GetDisplayName()}";
+        return $"{settings.BackendUrl}/api/files/{file.Id}.{file.FileType.GetDisplayName()}";
     }
 }

@@ -18,7 +18,8 @@ public class AlbumsRepository: BaseRepositoryWithId<AlbumModel, AppDbContext>
     {
         return _database
             .Include(model => model.CoverFile)
-            .Include(model => model.Files);
+            .Include(model => model.Files)
+            .ThenInclude(model => model.File);
     }
 
     public async Task AddFileAsync(AlbumModel model, FileModel fileModel)

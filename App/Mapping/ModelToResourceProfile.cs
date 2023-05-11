@@ -13,6 +13,7 @@ public class ModelToResourceProfile: Profile
         CreateMap<AlbumModel, AlbumResponse>();
         
         CreateMap<FileModel, FileResponse>();
+        CreateMap<AlbumFileRelation, FileResponse>();
         
         CreateMap<UserModel, UserResponse>();
 
