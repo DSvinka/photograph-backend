@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a0ff6b30-0ff1-45c5-8101-4dbc15b17352" name="DSvinka Games" url="http://mirea.dsvinka.ru/api">
+        <fileTransfer rootFolder="/var/www/mirea-dsvinka-ru/backend" accessType="SFTP" host="192.168.1.115" port="22" sshConfigId="999dad17-81bc-4fc1-b019-a2d90fddc86a" sshConfig="dsvinka@192.168.1.115:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

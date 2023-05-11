@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\Domain.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\Domain.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.2" />
+      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.15.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Models\Database\Auth\UserResponse.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Database\Auth\LoginResponse.cs">
+        <DependentUpon>LoginRequest.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Database\Auth\RefreshTokenResponse.cs">
+        <DependentUpon>RefreshTokenRequest.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Database\Auth\TokenResponse.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Database\Auth\RefreshTokenRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Database\Auth\LoginRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Albums\AlbumResponse.cs">
+        <DependentUpon>AlbumModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\UserResponse.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\Albums\AlbumRequest.cs">
+        <DependentUpon>AlbumModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\FileResponse.cs">
+        <DependentUpon>FileModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\FileRequest.cs">
+        <DependentUpon>FileModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\LoginResponse.cs">
+        <DependentUpon>LoginRequest.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\RefreshTokenResponse.cs">
+        <DependentUpon>RefreshTokenRequest.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\SettingsAdminResponse.cs">
+        <DependentUpon>SettingsModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\SettingsResponse.cs">
+        <DependentUpon>SettingsModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\SettingsRequest.cs">
+        <DependentUpon>SettingsModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\UserRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\TokenResponse.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\StringRequest.cs">
+        <DependentUpon>StringModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\StringResponse.cs">
+        <DependentUpon>StringModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\StringsResponse.cs">
+        <DependentUpon>StringModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\LoginRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\RefreshTokenRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

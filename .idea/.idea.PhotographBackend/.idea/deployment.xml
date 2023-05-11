@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="DSvinka Games" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="DSvinka Games">
+        <serverdata>
+          <mappings>
+            <mapping deploy="" local="$PROJECT_DIR$/App/Properties/launchSettings.json" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/App/Program.cs" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/App/appsettings.Development.json" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/App/appsettings.json" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/App/Dockerfile" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/.dockerignore" web="/" />
+            <mapping local="$PROJECT_DIR$/App/obj/Debug/net7.0/App.GlobalUsings.g.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/obj/Debug/net7.0/App.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/obj/Debug/net7.0/App.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="C:/Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_7_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Database.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/obj/Debug/net6.0/Database.GlobalUsings.g.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/obj/Debug/net6.0/Database.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/obj/Debug/net6.0/Database.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="C:/Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_6_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/UserModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Domain.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.GlobalUsings.g.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="C:/Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_6_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Abstractions/Services/Auth/IAuthenticateService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Abstractions/Services/Auth/IPasswordHashService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Abstractions/Services/Auth/ITokenService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Settings/JwtSettings.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/TokenResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/FileModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Shared/Enums/EFileType.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/Binders/JsonModelBinder.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/Attributes/AuthorizedAttribute.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/DateTimeExtensions.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/EnumExtensions.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/ModelStateExtensions.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Extensions/ServiceExtensions.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Abstractions/Models/BaseModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Settings/DatabaseSettings.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Settings/HashingSettings.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/AppDbContext.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Repositories/UsersRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Abstractions/BaseRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Mapping/ResourceToModelProfile.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Mapping/ModelToResourceProfile.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/UserResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/RefreshTokenResponse.cs" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/Domain/Models/RefreshTokenRequest.cs" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/Domain/Models/LoginResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/LoginRequest.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Controllers/SettingsController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/SettingsModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/SettingsRequest.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/SettingsResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Repositories/SettingsRepository.cs" web="/" />
+            <mapping deploy="" local="$PROJECT_DIR$/Database/Migrations/20230130210621_Init.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/AppDbContextModelSnapshot.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/20230130210621_Init.Designer.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/commands.txt" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/SettingsAdminResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Services/Auth/TokenService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Services/Auth/AuthenticateService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Services/Auth/PasswordHashService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/20230131132427_SettingsFix.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/20230131132427_SettingsFix.Designer.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Controllers/UsersController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/UserRequest.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Controllers/AlbumsController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/Albums/AlbumModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/Albums/AlbumFileRelation.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/Albums/AlbumResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Abstractions/Models/BaseModelResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Repositories/AlbumsRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Repositories/FilesRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/FileResponse.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/Albums/AlbumRequest.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Utils/FilesUtils.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/App/Controllers/FilesController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Domain/Models/FileRequest.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/20230131230904_AlbumsAndAuthFix.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Database/Migrations/20230131230904_AlbumsAndAuthFix.Designer.cs" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
