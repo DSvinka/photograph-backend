@@ -70,9 +70,6 @@
       <Compile Update="Models\SettingsRequest.cs">
         <DependentUpon>SettingsModel.cs</DependentUpon>
       </Compile>
-      <Compile Update="Models\UserRequest.cs">
-        <DependentUpon>UserModel.cs</DependentUpon>
-      </Compile>
       <Compile Update="Models\TokenResponse.cs">
         <DependentUpon>UserModel.cs</DependentUpon>
       </Compile>
@@ -89,6 +86,27 @@
         <DependentUpon>UserModel.cs</DependentUpon>
       </Compile>
       <Compile Update="Models\RefreshTokenRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\ReviewResponse.cs">
+        <DependentUpon>ReviewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\ReviewRequest.cs">
+        <DependentUpon>ReviewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\RegisterResponse.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\RegisterRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\UserRequest.cs">
+        <DependentUpon>UserModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\ReviewWithUserResponse.cs">
+        <DependentUpon>ReviewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Models\UserWithReviewResponse.cs">
         <DependentUpon>UserModel.cs</DependentUpon>
       </Compile>
     </ItemGroup>

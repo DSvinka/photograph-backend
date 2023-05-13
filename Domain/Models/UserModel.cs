@@ -6,20 +6,35 @@ namespace Domain.Models;
 
 public class UserModel: BaseModelWithId
 {
-    // Поля для авторизации.
-    public string Username { get; set; }
-    // Хранение пароля в чистом виде является плохой практикой, по этому пароли принято переводить в хеш токен.
+    public string FirstName { get; set; }
+    public string? FamilyName { get; set; }
+    
+    /// <summary>
+    /// Адрес электронной почты (Email)
+    /// </summary>
+    public string Email { get; set; }
+    /// <summary>
+    /// Хеш пароля
+    /// </summary>
     public string PasswordHash { get; set; }
 
-    // Буллевое поле для отметки пользователя в качестве администратора.
+    /// <summary>
+    /// Является ли пользователем администратором?
+    /// </summary>
     public bool Administrator { get; set; }
     
-    // Поле для токен обновления.
+    /// <summary>
+    /// Токен обновления, для обновления токена авторизации
+    /// </summary>
     public string? RefreshToken { get; set; }
+    
+    /// <summary>
+    /// Модель отзыва
+    /// </summary>
+    public ReviewModel? Review { get; set; }
 
     public static void InitializeEntity(ModelBuilder modelBuilder)
     {
-        // Получаем "строителя" модели.
         var userModel = modelBuilder.Entity<UserModel>();
         // Приписываем для модели таблицу "users".
         userModel.ToTable("users");
@@ -33,11 +48,26 @@ public class UserModel: BaseModelWithId
         userModel.Property(b => b.Id)
             .IsRequired();
 
-        // Поле Username:
+        // Поле FirstName:
         // - Частью сущности;
         // - Объязателен для заполнения;
         // - Имеет максимальную длинну в 256 символов;
-        userModel.Property(b => b.Username)
+        userModel.Property(b => b.FirstName)
+            .IsRequired()
+            .HasMaxLength(256);
+        
+        // Поле SecondName:
+        // - Частью сущности;
+        // - Не объязателен для заполнения;
+        // - Имеет максимальную длинну в 256 символов;
+        userModel.Property(b => b.FamilyName)
+            .HasMaxLength(256);
+        
+        // Поле Email:
+        // - Частью сущности;
+        // - Объязателен для заполнения;
+        // - Имеет максимальную длинну в 256 символов;
+        userModel.Property(b => b.Email)
             .IsRequired()
             .HasMaxLength(256);
 

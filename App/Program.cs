@@ -25,7 +25,7 @@ builder.Services.AddScoped<SettingsRepository>();
 builder.Services.AddScoped<FilesRepository>();
 builder.Services.AddScoped<AlbumsRepository>();
 builder.Services.AddScoped<StringsRepository>();
-
+builder.Services.AddScoped<ReviewsRepository>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
@@ -120,7 +120,9 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
     {
         await ctx.Users.AddAsync(new UserModel()
         {
-            Username = "Admin",
+            FirstName = "Иван",
+            FamilyName = "Иванович",
+            Email = "admin@dsvinka.ru",
             PasswordHash = passwordHashService.PasswordHash("Admin"),
             Administrator = true,
         });

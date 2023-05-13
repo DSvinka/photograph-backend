@@ -60,15 +60,21 @@ public class AuthController : ControllerBase
             return BadRequest(ModelState.GetErrorMessages());
         }
         
-        var personalModel = await _usersRepository.GetByUsernameAsync(login.Username);
+        var personalModel = await _usersRepository.GetByEmailAsync(login.Email);
         if (personalModel == null)
         {
-            return Unauthorized();
+            return Problem(
+                title: "Ошибка Авторизации",
+                detail: "Неверный логин или пароль!",
+                statusCode: StatusCodes.Status400BadRequest);
         }
 
         if (!_passwordHash.VerifyPasswordHash(personalModel.PasswordHash, login.Password))
         {
-            return Unauthorized();
+            return Problem(
+                title: "Ошибка Авторизации",
+                detail: "Неверный логин или пароль!",
+                statusCode: StatusCodes.Status400BadRequest);
         }
 
         var tokenModel = await _authenticateService.LoginUser(personalModel);
@@ -77,11 +83,66 @@ public class AuthController : ControllerBase
         return Ok(new LoginResponse()
         {
             Id = personalModel.Id,
-            Username = personalModel.Username,
+            Email = personalModel.Email,
             Administrator = personalModel.Administrator,
 
             AccessToken = tokenModel.AccessToken,
             RefreshToken = tokenModel.RefreshToken,
+        });
+    }
+    
+    /// <summary>
+    /// Регистрирует пользователя
+    /// </summary>
+    /// <returns>
+    /// Данные пользователя
+    /// </returns>
+    /// <param name="register">Форма запроса</param>
+    /// <response code="200">Операция успешно выполнена</response>
+    /// <response code="400">В запросе допущена ошибка</response>   
+    /// <response code="401">Не удалось авторизоваться</response>   
+    // POST: api/auth/register
+    [HttpPost("register"), AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState.GetErrorMessages());
+        }
+        
+        var foundModel = await _usersRepository.GetByEmailAsync(request.Email);
+        if (foundModel != null)
+        {
+            return Problem(
+                title: "Ошибка Регистрации",
+                detail: "Такой Email уже зарегистрирован!",
+                statusCode: StatusCodes.Status400BadRequest);
+        }
+
+        var model = new UserModel()
+        {
+            FirstName = request.FirstName,
+            FamilyName = request.FamilyName,
+
+            Email = request.Email,
+            Administrator = false,
+
+            PasswordHash = _passwordHash.PasswordHash(request.Password)
+        };
+
+        await _usersRepository.AddAsync(model);
+        await _usersRepository.CommitAsync();
+
+        return Ok(new RegisterResponse()
+        {
+            FirstName = model.FirstName,
+            FamilyName = model.FamilyName,
+            
+            Email = model.Email,
+            Administrator = model.Administrator,
         });
     }
 
@@ -146,6 +207,9 @@ public class AuthController : ControllerBase
         }
 
         var userResponse = _mapper.Map<UserModel, UserResponse>(personalModel);
+        if (personalModel.Review != null)
+            userResponse.Review = _mapper.Map<ReviewModel, ReviewResponse>(personalModel.Review);
+        
         return Ok(userResponse);
     }
 }

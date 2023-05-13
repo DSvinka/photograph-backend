@@ -3,10 +3,7 @@ using Domain.Abstractions.Models;
 
 namespace Domain.Models;
 
-/// <summary>
-/// Ответ с пользователем
-/// </summary>
-public class UserResponse: BaseModelResponse
+public class RegisterResponse: BaseModelResponse
 {
     /// <summary>
     /// Имя
@@ -22,23 +19,18 @@ public class UserResponse: BaseModelResponse
     /// <example>
     /// Иванов
     /// </example>
-    [Required, MaxLength(256)] public string SecondName { get; set; }
+    [Required, MaxLength(256)] public string FamilyName { get; set; }
     
     /// <summary>
-    /// Email (Логин)
+    /// Адрес электронной почты (Логин)
     /// </summary>
     /// <example>
-    /// Admin
+    /// example@dsvinka.ru
     /// </example>
-    [Required, MaxLength(256)] public string Email { get; set; }
+    [Required, EmailAddress, MaxLength(256)] public string Email { get; set; }
     
     /// <summary>
-    /// Статус администратора
+    /// Определяет является ли пользователь администратором
     /// </summary>
     [Required] public bool Administrator { get; set; }
-    
-    /// <summary>
-    /// Отзыв
-    /// </summary>
-    [Required] public ReviewResponse? Review { get; set; }
 }

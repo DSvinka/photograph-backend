@@ -6,12 +6,12 @@ namespace Domain.Models;
 public class LoginResponse: BaseModelResponse
 {
     /// <summary>
-    /// Никнейм (Логин)
+    /// Адрес электронной почты (Логин)
     /// </summary>
     /// <example>
-    /// Admin
+    /// example@dsvinka.ru
     /// </example>
-    [Required, MaxLength(256)] public string Username { get; set; }
+    [Required, EmailAddress, MaxLength(256)] public string Email { get; set; }
     
     /// <summary>
     /// Определяет является ли пользователь администратором

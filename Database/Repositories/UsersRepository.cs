@@ -12,16 +12,17 @@ public class UsersRepository: BaseRepositoryWithId<UserModel, AppDbContext>
     
     public override IQueryable<UserModel> Include()
     {
-        return _database;
+        return _database
+            .Include(model => model.Review);
     }
     
-    public async Task<UserModel?> GetByUsernameAsync(string username)
+    public async Task<UserModel?> GetByEmailAsync(string username)
     {
-        return await Include().SingleOrDefaultAsync(model => model.Username.Equals(username));
+        return await Include().SingleOrDefaultAsync(model => model.Email.Equals(username));
     }
 
     public async Task<UserModel?> GetByRefreshTokenAsync(string refreshToken)
     {
-        return await Include().SingleOrDefaultAsync(model => model.RefreshToken.Equals(refreshToken));
+        return await Include().SingleOrDefaultAsync(model => model.RefreshToken != null && model.RefreshToken.Equals(refreshToken));
     }
 }

@@ -12,11 +12,11 @@ namespace App.Controllers;
 /// <summary>
 /// Контроллер который отвечает за пользователей
 /// </summary>
-[Route("api/users")]
+[Route("api/reviews")]
 [ApiController] [Produces("application/json")]
-public class UsersController: ControllerBase
+public class ReviewsController: ControllerBase
 {
-    private readonly UsersRepository _usersRepository;
+    private readonly ReviewsRepository _reviewsRepository;
     
     private readonly IPasswordHashService _passwordHashService;
     private readonly IAuthenticateService _authenticateService;
@@ -29,60 +29,60 @@ public class UsersController: ControllerBase
     /// <param name="authenticateService"></param>
     /// <param name="usersRepository"></param>
     /// <param name="passwordHashService"></param>
-    public UsersController(IMapper mapper, IAuthenticateService authenticateService, UsersRepository usersRepository, IPasswordHashService passwordHashService)
+    public ReviewsController(IMapper mapper, IAuthenticateService authenticateService, ReviewsRepository reviewsRepository, IPasswordHashService passwordHashService)
     {
         _mapper = mapper;
         _authenticateService = authenticateService;
-        _usersRepository = usersRepository;
+        _reviewsRepository = reviewsRepository;
         _passwordHashService = passwordHashService;
     }
 
     /// <summary>
-    /// Получает список всех пользователей
+    /// Получает список всех отзывов
     /// </summary>
     /// <returns>
-    /// Список пользователей
+    /// Список отзывов
     /// </returns>
     /// <response code="200">Операция успешно выполнена</response>
     /// <response code="403">У вас недостаточно прав</response>  
     /// <response code="404">Записи не найдены</response>    
-    // GET: api/users
-    [HttpGet, Authorized(true)]
+    // GET: api/reviews
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<List<UserModel>>> GetUsers()
+    public async Task<ActionResult<List<ReviewModel>>> GetReviews()
     {
-        var models = await _usersRepository.GetAllAsync();
+        var models = await _reviewsRepository.GetAllAsync();
         if (models.Count == 0)
             return NotFound();
 
-        var response = _mapper.Map<List<UserModel>, List<UserResponse>>(models);
+        var response = _mapper.Map<List<ReviewModel>, List<ReviewWithUserResponse>>(models);
         return Ok(response);
     }
     
     /// <summary>
-    /// Получает конкретного пользователя
+    /// Получает конкретный отзыв
     /// </summary>
     /// <returns>
-    /// Конкретный пользователь
+    /// Конкретный Отзыв
     /// </returns>
-    /// <param name="id">ID Пользователя</param>
+    /// <param name="id">ID Отзыва</param>
     /// <response code="200">Операция успешно выполнена</response>
     /// <response code="403">У вас недостаточно прав</response>  
     /// <response code="404">Запись не найдена</response>    
-    // GET: api/users/{id}
-    [HttpGet("{id:long}"), Authorized(true)]
+    // GET: api/reviews/{id}
+    [HttpGet("{id:long}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<UserResponse>> GetUser(long id)
+    public async Task<ActionResult<UserResponse>> GetReview(long id)
     {
-        var model = await _usersRepository.GetByIdAsync(id);
+        var model = await _reviewsRepository.GetByIdAsync(id);
         if (model == null)
             return NotFound();
 
-        var response = _mapper.Map<UserModel, UserResponse>(model);
+        var response = _mapper.Map<ReviewModel, ReviewWithUserResponse>(model);
         return Ok(response);
     }
 
@@ -92,91 +92,100 @@ public class UsersController: ControllerBase
     /// <response code="200">Операция успешно выполнена</response>
     /// <response code="403">У вас недостаточно прав</response>
     /// <response code="400">В запросе допущена ошибка</response>  
-    // POST: api/users
-    [HttpPost, Authorized(true)]
+    // POST: api/reviews
+    [HttpPost, Authorized(false)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> AddUser([FromBody] UserRequest request)
-    {
-        if (!ModelState.IsValid || request.Password is null)
-        {
-            return BadRequest(ModelState.GetErrorMessages());
-        }
-        
-        var model = _mapper.Map<UserRequest, UserModel>(request);
-        model.PasswordHash = _passwordHashService.PasswordHash(request.Password);
-
-        await _usersRepository.AddAsync(model);
-        await _usersRepository.CommitAsync();
-
-        return Ok();
-    }
-
-    /// <summary>
-    /// Изменяет конкретного пользователя
-    /// </summary>
-    /// <param name="request">Форма запроса</param>
-    /// <param name="id">ID Пользователя</param>
-    /// <response code="200">Операция успешно выполнена</response>
-    /// <response code="403">У вас недостаточно прав</response>  
-    /// <response code="404">Запись не найдена</response>
-    /// <response code="400">В запросе допущена ошибка</response>  
-    // PATCH: api/users/{id}
-    [HttpPatch("{id:long}"), Authorized(true)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> UpdateUser([FromBody] UserRequest request, long id)
+    public async Task<ActionResult> AddReview([FromBody] ReviewRequest request)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState.GetErrorMessages());
         }
         
-        var model = await _usersRepository.GetByIdAsync(id);
+        var user = await _authenticateService.GetUser(User);
+        if (user == null)
+        {
+            return Problem(
+                title: "Ошибка Авторизации",
+                detail: "Вы не авторизованы!",
+                statusCode: StatusCodes.Status401Unauthorized);
+        }
+
+        var checkReview = await _reviewsRepository.GetByUserIdAsync(user.Id);
+        if (checkReview != null)
+        {
+            return Problem(
+                title: "Ошибка",
+                detail: "Вы уже отправляли отзыв!",
+                statusCode: StatusCodes.Status403Forbidden);
+        }
+        
+        var model = _mapper.Map<ReviewRequest, ReviewModel>(request);
+        model.User = user;
+
+        await _reviewsRepository.AddAsync(model);
+        await _reviewsRepository.CommitAsync();
+
+        return Ok();
+    }
+
+    /// <summary>
+    /// Изменяет конкретный отзыв
+    /// </summary>
+    /// <param name="request">Форма запроса</param>
+    /// <param name="id">ID Отзыва</param>
+    /// <response code="200">Операция успешно выполнена</response>
+    /// <response code="403">У вас недостаточно прав</response>  
+    /// <response code="404">Запись не найдена</response>
+    /// <response code="400">В запросе допущена ошибка</response>  
+    // PATCH: api/reviews/{id}
+    [HttpPatch("{id:long}"), Authorized(true)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> UpdateReview([FromBody] ReviewRequest request, long id)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState.GetErrorMessages());
+        }
+        
+        var model = await _reviewsRepository.GetByIdAsync(id);
         if (model == null)
             return NotFound();
         
-        var updateModel = _mapper.Map<UserRequest, UserModel>(request);
+        var updateModel = _mapper.Map<ReviewRequest, ReviewModel>(request);
 
-        if (request.Password != null)
-        {
-            updateModel.PasswordHash = _passwordHashService.PasswordHash(request.Password);
-        }
-        else
-        {
-            updateModel.PasswordHash = model.PasswordHash;
-        }
-        
-        _usersRepository.Update(model, updateModel);
-        await _usersRepository.CommitAsync();
+        _reviewsRepository.Update(model, updateModel);
+        await _reviewsRepository.CommitAsync();
 
         return Ok();
     }
     
     /// <summary>
-    /// Удаляет конкретного пользователя
+    /// Удаляет конкретный отзыв
     /// </summary>
-    /// <param name="id">ID Пользователя</param>
+    /// <param name="id">ID Отзыва</param>
     /// <response code="200">Операция успешно выполнена</response>
     /// <response code="403">У вас недостаточно прав</response>  
     /// <response code="404">Запись не найдена</response>     
-    // DELETE: api/users/{id}
+    // DELETE: api/reviews/{id}
     [HttpDelete("{id:long}"), Authorized(true)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Produces("application/json")]
-    public async Task<ActionResult> DeleteUser(long id)
+    public async Task<ActionResult> DeleteReview(long id)
     {
-        var model = await _usersRepository.GetByIdAsync(id);
+        var model = await _reviewsRepository.GetByIdAsync(id);
         if (model == null)
             return NotFound();
 
-        _usersRepository.Remove(model);
-        await _usersRepository.CommitAsync();
+        _reviewsRepository.Remove(model);
+        await _reviewsRepository.CommitAsync();
 
         return Ok();
     }

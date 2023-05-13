@@ -18,6 +18,6 @@ public class ResourceToModelProfile: Profile
 
         CreateMap<StringRequest, StringModel>();
 
-        CreateMap<UserRequest, UserModel>();
+        CreateMap<ReviewRequest, ReviewModel>();
     }
 }

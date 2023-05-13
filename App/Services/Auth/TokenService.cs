@@ -27,7 +27,7 @@ public sealed class TokenService: ITokenService
         var claims = new List<Claim>
         {
             new Claim("id", userModel.Id.ToString()),
-            new Claim(ClaimsIdentity.DefaultNameClaimType, userModel.Username)
+            new Claim(ClaimsIdentity.DefaultNameClaimType, userModel.FirstName)
         };
         
         // Генерирует и возвращаем токен

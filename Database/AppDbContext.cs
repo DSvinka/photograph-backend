@@ -9,7 +9,8 @@ public class AppDbContext: DbContext
     public DbSet<SettingsModel> Settings { get; set; } = null!;
     public DbSet<UserModel> Users { get; set; } = null!;
     public DbSet<FileModel> Files { get; set; } = null!;
-    
+    public DbSet<ReviewModel> Reviews { get; set; } = null!;
+
     public DbSet<StringModel> Strings { get; set; } = null!;
     
     public DbSet<AlbumModel> Albums { get; set; } = null!;
@@ -33,6 +34,7 @@ public class AppDbContext: DbContext
         FileModel.InitializeEntity(modelBuilder);
         SettingsModel.InitializeEntity(modelBuilder);
         StringModel.InitializeEntity(modelBuilder);
+        ReviewModel.InitializeEntity(modelBuilder);
         
         AlbumModel.InitializeEntity(modelBuilder);
         AlbumFileRelation.InitializeEntity(modelBuilder);

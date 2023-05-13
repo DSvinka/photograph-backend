@@ -3,6 +3,7 @@ using System;
 using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512194354_AddedReviews")]
+    partial class AddedReviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(6648))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 878, DateTimeKind.Utc).AddTicks(4324))
                         .HasColumnName("created");
 
                     b.Property<long>("FileId")
@@ -48,7 +51,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(6282))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 878, DateTimeKind.Utc).AddTicks(3952))
                         .HasColumnName("last_updated");
 
                     b.HasKey("Id")
@@ -85,7 +88,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(2829))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 878, DateTimeKind.Utc).AddTicks(859))
                         .HasColumnName("created");
 
                     b.Property<string>("Description")
@@ -97,7 +100,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(2479))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 878, DateTimeKind.Utc).AddTicks(490))
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Title")
@@ -127,7 +130,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(5519))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(4177))
                         .HasColumnName("created");
 
                     b.Property<byte[]>("FileBytes")
@@ -152,7 +155,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(5190))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(3927))
                         .HasColumnName("last_updated");
 
                     b.Property<int>("Width")
@@ -177,13 +180,13 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(544))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(8707))
                         .HasColumnName("created");
 
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 761, DateTimeKind.Utc).AddTicks(192))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(8328))
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Text")
@@ -224,7 +227,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(6540))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(5133))
                         .HasColumnName("created");
 
                     b.Property<string>("FrontendUrl")
@@ -236,7 +239,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(6269))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(4823))
                         .HasColumnName("last_updated");
 
                     b.HasKey("Id")
@@ -255,13 +258,13 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(8180))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(6648))
                         .HasColumnName("created");
 
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(7906))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(6346))
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Value")
@@ -292,7 +295,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(4192))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(3056))
                         .HasColumnName("created");
 
                     b.Property<string>("Email")
@@ -300,11 +303,6 @@ namespace Database.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("email");
-
-                    b.Property<string>("FamilyName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("family_name");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -315,7 +313,7 @@ namespace Database.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2023, 5, 13, 12, 38, 17, 760, DateTimeKind.Utc).AddTicks(3810))
+                        .HasDefaultValue(new DateTime(2023, 5, 12, 19, 43, 53, 877, DateTimeKind.Utc).AddTicks(2778))
                         .HasColumnName("last_updated");
 
                     b.Property<string>("PasswordHash")
@@ -326,6 +324,11 @@ namespace Database.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text")
                         .HasColumnName("refresh_token");
+
+                    b.Property<string>("SecondName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("second_name");
 
                     b.HasKey("Id")
                         .HasName("pk_users");

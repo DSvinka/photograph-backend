@@ -11,10 +11,14 @@ public class ModelToResourceProfile: Profile
     public ModelToResourceProfile()
     {
         CreateMap<AlbumModel, AlbumResponse>();
+        CreateMap<AlbumFileRelation, FileResponse>();
+
+        CreateMap<ReviewModel, ReviewResponse>();
+        CreateMap<ReviewModel, ReviewWithUserResponse>()
+            .ForMember(member => member.User, options => options.MapFrom(model => model.User));
         
         CreateMap<FileModel, FileResponse>();
-        CreateMap<AlbumFileRelation, FileResponse>();
-        
+
         CreateMap<UserModel, UserResponse>();
 
         CreateMap<StringModel, StringResponse>();
